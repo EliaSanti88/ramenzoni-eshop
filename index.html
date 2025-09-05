@@ -117,6 +117,7 @@
                         <input type="text" name="lastName" placeholder="Cognome" required data-translate-placeholder="checkout.lastName">
                     </div>
                     <input type="email" name="email" placeholder="Email" required data-translate-placeholder="checkout.email">
+                    <input type="tel" name="phone" placeholder="Telefono (opzionale)" data-translate-placeholder="checkout.phone">
                     <input type="text" name="address" placeholder="Indirizzo" required data-translate-placeholder="checkout.address">
                     <div class="form-row">
                         <input type="text" name="city" placeholder="Città" required data-translate-placeholder="checkout.city">
@@ -136,17 +137,21 @@
                     <h4 data-translate="checkout.payment">Metodo di Pagamento</h4>
                     <div class="payment-methods">
                         <label class="payment-option">
-                            <input type="radio" name="payment" value="card" checked>
-                            <span>💳 Carta di Credito</span>
+                            <input type="radio" name="payment" value="bank" checked>
+                            <span>🏦 Bonifico Bancario</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="cash">
+                            <span>� Contrassegno</span>
                         </label>
                         <label class="payment-option">
                             <input type="radio" name="payment" value="paypal">
-                            <span>💙 PayPal</span>
+                            <span>💙 PayPal (da confermare)</span>
                         </label>
-                        <label class="payment-option">
-                            <input type="radio" name="payment" value="bank">
-                            <span>🏦 Bonifico Bancario</span>
-                        </label>
+                    </div>
+                    <div class="payment-note" style="background: #f9f9f9; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                        <strong>ℹ️ Nota:</strong> Ti contatteremo via email per confermare i dettagli di pagamento e spedizione. 
+                        L'ordine sarà confermato dopo il pagamento.
                     </div>
                 </div>
                 

@@ -207,17 +207,126 @@ function clearCart() {
 
 // Process order
 function processOrder(orderData) {
-    // In a real application, this would send data to a server
     console.log('Processing order:', orderData);
+    
+    // Crea email con dettagli ordine
+    const emailBody = createOrderEmail(orderData);
     
     // Simulate API call
     return new Promise((resolve) => {
         setTimeout(() => {
+            // Apri client email con ordine precompilato
+            sendOrderEmail(emailBody, orderData);
+            
             // Clear cart after successful order
             clearCart();
             resolve({ success: true, orderId: Date.now() });
         }, 1000);
     });
+}
+
+// Crea email formattata con dettagli ordine
+function createOrderEmail(orderData) {
+    const orderDate = new Date().toLocaleDateString('it-IT');
+    const orderTime = new Date().toLocaleTimeString('it-IT');
+    
+    let emailBody = `NUOVO ORDINE - CAFFÈ RAMENZONI\n`;
+    emailBody += `================================\n\n`;
+    emailBody += `Data: ${orderDate} - ${orderTime}\n`;
+    emailBody += `Ordine ID: RAM-${Date.now()}\n\n`;
+    
+    emailBody += `DATI CLIENTE:\n`;
+    emailBody += `Nome: ${orderData.customer.firstName} ${orderData.customer.lastName}\n`;
+    emailBody += `Email: ${orderData.customer.email}\n`;
+    emailBody += `Telefono: ${orderData.customer.phone || 'Non fornito'}\n\n`;
+    
+    emailBody += `INDIRIZZO SPEDIZIONE:\n`;
+    emailBody += `${orderData.customer.address}\n`;
+    emailBody += `${orderData.customer.postalCode} ${orderData.customer.city}\n`;
+    emailBody += `${orderData.customer.country}\n\n`;
+    
+    emailBody += `PRODOTTI ORDINATI:\n`;
+    emailBody += `==================\n`;
+    orderData.items.forEach(item => {
+        emailBody += `• ${item.name[getCurrentLanguage()] || item.name.it}\n`;
+        emailBody += `  Quantità: ${item.quantity}\n`;
+        emailBody += `  Prezzo: €${item.price.toFixed(2)}\n`;
+        emailBody += `  Subtotale: €${(item.price * item.quantity).toFixed(2)}\n\n`;
+    });
+    
+    emailBody += `TOTALE ORDINE: €${orderData.total.toFixed(2)}\n\n`;
+    emailBody += `METODO PAGAMENTO: ${getPaymentMethodName(orderData.payment.method)}\n\n`;
+    
+    emailBody += `NOTE:\n`;
+    emailBody += `- Il cliente riceverà conferma via email\n`;
+    emailBody += `- Preparare ordine per spedizione\n`;
+    emailBody += `- Contattare per conferma pagamento se necessario\n\n`;
+    
+    emailBody += `---\n`;
+    emailBody += `Ordine generato automaticamente da ramenzoni.eu`;
+    
+    return emailBody;
+}
+
+// Invia email ordine
+function sendOrderEmail(emailBody, orderData) {
+    const subject = `Nuovo Ordine Caffè Ramenzoni - ${orderData.customer.firstName} ${orderData.customer.lastName}`;
+    const mailto = `mailto:info@ramenzoni.eu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Apri client email
+    window.open(mailto, '_blank');
+    
+    // Mostra anche messaggio di conferma al cliente
+    showOrderConfirmation(orderData);
+}
+
+// Mostra conferma ordine al cliente
+function showOrderConfirmation(orderData) {
+    const modal = document.getElementById('checkoutModal');
+    if (modal) {
+        modal.innerHTML = `
+            <div class="modal-content" style="text-align: center; padding: 2rem;">
+                <div style="font-size: 3rem; color: #4CAF50; margin-bottom: 1rem;">✅</div>
+                <h2 style="color: #8B4513; margin-bottom: 1rem;">Ordine Ricevuto!</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                    Grazie <strong>${orderData.customer.firstName}</strong> per il tuo ordine!
+                </p>
+                <div style="background: #f9f9f9; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Ordine ID:</strong> RAM-${Date.now()}</p>
+                    <p><strong>Totale:</strong> €${orderData.total.toFixed(2)}</p>
+                    <p><strong>Email:</strong> ${orderData.customer.email}</p>
+                </div>
+                <p style="color: #666; margin-bottom: 1.5rem;">
+                    Riceverai una email di conferma a breve.<br>
+                    Ti contatteremo per confermare i dettagli di pagamento e spedizione.
+                </p>
+                <div style="margin-top: 2rem;">
+                    <button onclick="hideCheckout()" style="background: #8B4513; color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-size: 1rem; cursor: pointer; margin-right: 1rem;">
+                        Continua Shopping
+                    </button>
+                    <a href="mailto:info@ramenzoni.eu?subject=Domande%20ordine%20RAM-${Date.now()}" style="color: #8B4513; text-decoration: none;">
+                        📧 Contattaci per domande
+                    </a>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// Ottieni nome metodo pagamento
+function getPaymentMethodName(method) {
+    const methods = {
+        'card': 'Carta di Credito',
+        'paypal': 'PayPal',
+        'bank': 'Bonifico Bancario',
+        'cash': 'Contrassegno'
+    };
+    return methods[method] || method;
+}
+
+// Ottieni lingua corrente
+function getCurrentLanguage() {
+    return localStorage.getItem('ramenzoni-language') || 'it';
 }
 
 // Initialize cart event listeners
