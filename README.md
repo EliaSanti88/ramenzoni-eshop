@@ -1,4 +1,100 @@
-# Caffè Ramenzoni E-Shop
+# # 🫒☕ Caffè Ramenzoni - E-Shop Online
+
+**E-commerce moderno per caffè premium e olio extravergine d'oliva**
+
+🌐 **[VISUALIZZA IL SITO LIVE](https://eliasanti88.github.io/ramenzoni-eshop/)**
+
+---
+
+## 🎯 Caratteristiche Principali
+
+### ☕ **Prodotti Caffè**
+- Miscele esclusive Ramenzoni
+- Caffè monorigine selezionati
+- Capsule compatibili
+- Attrezzature professionali
+
+### 🫒 **Prodotti Olio d'Oliva**
+- Olio Extravergine Viola
+- Oli biologici e aromatizzati
+- Set degustazione premium
+- Catalogazione dettagliata
+
+### 🌍 **Multilingua**
+- 🇮🇹 Italiano
+- 🇨🇿 Čeština  
+- 🇬🇧 English
+
+---
+
+## 🚀 Funzionalità
+
+✅ **Design Responsive** - Perfetto su mobile, tablet e desktop  
+✅ **Carrello Avanzato** - Gestione completa ordini  
+✅ **Filtri Intelligenti** - Ricerca per categoria  
+✅ **Checkout Semplificato** - Processo d'ordine intuitivo  
+✅ **Multilingua Completo** - 3 lingue supportate  
+✅ **Catalogo Visivo** - Immagini e descrizioni dettagliate  
+
+---
+
+## 🏪 Pagine del Sito
+
+| Pagina | Descrizione | Link |
+|--------|-------------|------|
+| **Home** | Pagina principale con tutti i prodotti | [index.html](https://eliasanti88.github.io/ramenzoni-eshop/) |
+| **Catalogo Olio** | Pagina dedicata agli oli con immagini | [catalogo-olio.html](https://eliasanti88.github.io/ramenzoni-eshop/catalogo-olio.html) |
+| **Test Sistema** | Verifica funzionalità e-shop | [test-prodotti.html](https://eliasanti88.github.io/ramenzoni-eshop/test-prodotti.html) |
+
+---
+
+## 🛠️ Tecnologie Utilizzate
+
+- **HTML5** - Struttura semantica
+- **CSS3** - Styling moderno e responsive
+- **JavaScript Vanilla** - Funzionalità interattive
+- **GitHub Pages** - Hosting gratuito e veloce
+- **Font Awesome** - Icone professionali
+- **Google Fonts** - Tipografia elegante
+
+---
+
+## 📱 Integrazione
+
+### WordPress
+Integrazione semplice tramite iframe:
+```html
+<iframe src="https://eliasanti88.github.io/ramenzoni-eshop/" 
+        width="100%" height="800px" frameborder="0"></iframe>
+```
+
+### Sito Esistente
+```html
+<div id="ramenzoni-shop"></div>
+<script src="https://eliasanti88.github.io/ramenzoni-eshop/js/app.js"></script>
+```
+
+---
+
+## 📞 Contatti
+
+**Caffè Ramenzoni**  
+📍 Parma, Italia | Praha, Repubblica Ceca  
+📧 info@ramenzoni.eu  
+🌐 Facebook: [ramenzonipraha](https://www.facebook.com/ramenzonipraha)
+
+---
+
+## 📈 Statistiche Repository
+
+![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+
+---
+
+✨ **Dal 1950, la passione per il caffè e l'olio d'oliva di qualità che unisce Italia e Repubblica Ceca!**
 
 Un e-shop moderno e responsive per Caffè Ramenzoni, facilmente integrabile nel sito web esistente.
 

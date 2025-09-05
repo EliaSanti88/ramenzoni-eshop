@@ -1,0 +1,76 @@
+# GitHub Pages Configuration for Caffè Ramenzoni E-Shop
+
+# Site settings
+title: "Caffè Ramenzoni - E-Shop Online"
+description: "E-commerce moderno per caffè premium e olio extravergine d'oliva. Dal 1950, la qualità italiana che unisce Parma e Praha."
+baseurl: "/ramenzoni-eshop"
+url: "https://eliasanti88.github.io"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Theme (optional - GitHub Pages supports certain themes)
+# theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# SEO settings
+author: "Caffè Ramenzoni"
+twitter:
+  username: ramenzoni
+facebook:
+  app_id: 
+  publisher: ramenzonipraha
+
+# Default settings
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+      author: "Caffè Ramenzoni"
+
+# Collections (if needed in future)
+collections:
+  products:
+    output: true
+    permalink: /:collection/:name/
+
+# Include/exclude files
+include:
+  - _pages
+  - .htaccess
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - .git/
+  - .github/
+  - README.md
+  - RIEPILOGO-MODIFICHE-OLIO.md
+  - test-prodotti.html
+
+# Site verification (optional)
+google_site_verification: ""
+bing_site_verification: ""
+
+# Analytics (optional)
+google_analytics: ""
+
+# Social links
+social_links:
+  facebook: "ramenzonipraha"
+  instagram: ""
+  email: "info@ramenzoni.eu"
