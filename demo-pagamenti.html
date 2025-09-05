@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Pagamenti Carta - Caffè Ramenzoni</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .demo-hero {
+            background: linear-gradient(135deg, #00D4AA, #01B89A);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .demo-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-payment-button {
+            background: linear-gradient(135deg, #00D4AA, #01B89A);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1rem;
+        }
+        
+        .demo-payment-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 170, 0.3);
+        }
+        
+        .cost-calculator {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .cost-result {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #00D4AA;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Caffè Ramenzoni</h1>
+                    <span class="tagline">Demo Pagamenti Carta</span>
+                </div>
+                <div class="header-actions">
+                    <a href="index.html" class="back-to-shop">🛒 Torna al Shop</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="demo-hero">
+        <div class="container">
+            <h2>💳 Demo Pagamenti con Carta di Credito</h2>
+            <p>Scopri come sarebbe semplice per i tuoi clienti pagare direttamente online</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Confronto Metodi di Pagamento -->
+        <div class="demo-section">
+            <h3>📊 Confronto Metodi di Pagamento</h3>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Metodo</th>
+                        <th>Setup</th>
+                        <th>Commissioni</th>
+                        <th>Sicurezza</th>
+                        <th>UX Cliente</th>
+                        <th>Raccomandazione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>💳 Stripe</strong></td>
+                        <td>✅ 24h</td>
+                        <td>1.4% + €0.25</td>
+                        <td>🛡️ Massima</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                        <td>🟢 <strong>Consigliato</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>💙 PayPal</strong></td>
+                        <td>✅ 30min</td>
+                        <td>3.4% + €0.35</td>
+                        <td>🛡️ Alta</td>
+                        <td>⭐⭐⭐⭐☆</td>
+                        <td>🟡 Alternativa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>📧 Email Ordini</strong></td>
+                        <td>✅ Subito</td>
+                        <td>0%</td>
+                        <td>⚠️ Minima</td>
+                        <td>⭐⭐☆☆☆</td>
+                        <td>🔴 Temporaneo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Calcolatore Costi -->
+        <div class="demo-section">
+            <h3>💰 Calcolatore Costi Commissioni</h3>
+            <div class="cost-calculator">
+                <label for="monthlyRevenue">Fatturato Mensile Stimato (€):</label>
+                <input type="number" id="monthlyRevenue" value="4000" min="0" step="100">
+                
+                <label for="averageOrder">Ordine Medio (€):</label>
+                <input type="number" id="averageOrder" value="40" min="0" step="5">
+                
+                <button onclick="calculateCosts()" class="demo-payment-button">Calcola Costi</button>
+                
+                <div id="costResults"></div>
+            </div>
+        </div>
+
+        <!-- Demo Esperienza Cliente -->
+        <div class="demo-section">
+            <h3>🛒 Demo Esperienza Cliente</h3>
+            <p>Prova come sarebbe per un cliente acquistare i vostri prodotti:</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">☕</div>
+                    <h4>Miscela Classica</h4>
+                    <p class="product-price">€12.50</p>
+                    <button class="demo-payment-button" onclick="demoQuickPurchase('Miscela Classica', 12.50)">
+                        💳 Acquista Subito
+                    </button>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🫒</div>
+                    <h4>Olio Extravergine Viola</h4>
+                    <p class="product-price">€18.50</p>
+                    <button class="demo-payment-button" onclick="demoQuickPurchase('Olio Extravergine Viola', 18.50)">
+                        💳 Acquista Subito
+                    </button>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h4>Set Degustazione</h4>
+                    <p class="product-price">€52.00</p>
+                    <button class="demo-payment-button" onclick="demoQuickPurchase('Set Degustazione', 52.00)">
+                        💳 Acquista Subito
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vantaggi -->
+        <div class="demo-section">
+            <h3>🎯 Vantaggi Pagamenti con Carta</h3>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h4>Pagamento Immediato</h4>
+                    <p>Cliente paga e riceve conferma istantanea</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h4>Sicurezza Massima</h4>
+                    <p>Protezione anti-frode e PCI compliance</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h4>Mobile Friendly</h4>
+                    <p>Funziona perfettamente su smartphone</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h4>Analytics Avanzate</h4>
+                    <p>Dashboard con vendite, rimborsi, statistiche</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementazione -->
+        <div class="demo-section">
+            <h3>🚀 Timeline Implementazione</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
+                <div style="text-align: center; padding: 1rem; background: #e8f5e8; border-radius: 10px;">
+                    <h4>📅 Giorno 1</h4>
+                    <p>Setup account Stripe<br>Documenti e verifica</p>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: #e8f5e8; border-radius: 10px;">
+                    <h4>📅 Giorno 2-3</h4>
+                    <p>Integrazione tecnica<br>Test e debugging</p>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: #e8f5e8; border-radius: 10px;">
+                    <h4>📅 Giorno 4-5</h4>
+                    <p>Test con carte reali<br>Go-live!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="demo-section" style="text-align: center; background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+            <h3>🚀 Pronto per Iniziare?</h3>
+            <p style="font-size: 1.1rem; margin: 1rem 0;">
+                Implementiamo i pagamenti con carta in <strong>meno di una settimana</strong>
+            </p>
+            <div style="margin: 2rem 0;">
+                <button class="demo-payment-button" onclick="alert('🎉 Contatta il supporto per iniziare l\'implementazione!')">
+                    🚀 Iniziamo Subito!
+                </button>
+                <button class="demo-payment-button" style="background: #6c757d;" onclick="window.open('PAGAMENTI-CARTA-ANALISI.md', '_blank')">
+                    📋 Leggi Analisi Completa
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Caffè Ramenzoni</h4>
+                    <p>Dal 1950, la passione per il caffè e l'olio d'oliva di qualità che unisce Italia e Repubblica Ceca.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contatti</h4>
+                    <p>📍 Parma, Italia</p>
+                    <p>📍 Praha, Repubblica Ceca</p>
+                    <p>📧 info@ramenzoni.eu</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Caffè Ramenzoni. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function calculateCosts() {
+            const monthlyRevenue = parseFloat(document.getElementById('monthlyRevenue').value) || 0;
+            const averageOrder = parseFloat(document.getElementById('averageOrder').value) || 0;
+            
+            const ordersPerMonth = monthlyRevenue / averageOrder;
+            const yearlyRevenue = monthlyRevenue * 12;
+            
+            // Stripe costs
+            const stripeFee = 0.014; // 1.4%
+            const stripeFixed = 0.25;
+            const stripeYearlyCost = (yearlyRevenue * stripeFee) + (ordersPerMonth * 12 * stripeFixed);
+            
+            // PayPal costs
+            const paypalFee = 0.034; // 3.4%
+            const paypalFixed = 0.35;
+            const paypalYearlyCost = (yearlyRevenue * paypalFee) + (ordersPerMonth * 12 * paypalFixed);
+            
+            const savings = paypalYearlyCost - stripeYearlyCost;
+            
+            document.getElementById('costResults').innerHTML = `
+                <div style="margin-top: 2rem;">
+                    <h4>📊 Risultati per Fatturato Annuo: €${yearlyRevenue.toLocaleString()}</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                        <div style="background: white; padding: 1rem; border-radius: 8px; text-align: center;">
+                            <h5>💳 Stripe</h5>
+                            <div class="cost-result">€${stripeYearlyCost.toFixed(0)}/anno</div>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 8px; text-align: center;">
+                            <h5>💙 PayPal</h5>
+                            <div style="font-size: 1.2rem; font-weight: 600; color: #dc3545;">€${paypalYearlyCost.toFixed(0)}/anno</div>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 8px; text-align: center;">
+                            <h5>💰 Risparmio</h5>
+                            <div style="font-size: 1.2rem; font-weight: 600; color: #28a745;">€${savings.toFixed(0)}/anno</div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 1rem; font-style: italic;">
+                        Con Stripe risparmi <strong>€${savings.toFixed(0)} all'anno</strong> rispetto a PayPal
+                    </p>
+                </div>
+            `;
+        }
+        
+        function demoQuickPurchase(productName, price) {
+            // Simulate Stripe checkout experience
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; padding: 2rem; border-radius: 12px; max-width: 400px; width: 90%; text-align: center;">
+                    <h3 style="margin-bottom: 1rem;">💳 Checkout Stripe</h3>
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                        <h4>${productName}</h4>
+                        <div style="font-size: 1.5rem; font-weight: 600; color: #00D4AA;">€${price.toFixed(2)}</div>
+                    </div>
+                    
+                    <div style="text-align: left; margin: 1rem 0;">
+                        <label style="display: block; margin-bottom: 0.5rem;">Numero Carta</label>
+                        <input type="text" value="4242 4242 4242 4242" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;" readonly>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem;">Scadenza</label>
+                                <input type="text" value="12/25" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;" readonly>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem;">CVC</label>
+                                <input type="text" value="123" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="this.closest('div[style*=\"position: fixed\"]').remove(); alert('✅ Ordine completato!\\n🚚 Riceverai email di conferma\\n📦 Spedizione in 24-48h')" 
+                            style="background: #00D4AA; color: white; border: none; padding: 1rem 2rem; border-radius: 6px; width: 100%; font-weight: 600; margin: 1rem 0; cursor: pointer;">
+                        💳 Paga €${price.toFixed(2)}
+                    </button>
+                    
+                    <button onclick="this.closest('div[style*=\"position: fixed\"]').remove()" 
+                            style="background: #6c757d; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">
+                        Annulla
+                    </button>
+                    
+                    <p style="font-size: 0.8rem; color: #666; margin-top: 1rem;">
+                        🔒 Pagamento sicuro con crittografia SSL<br>
+                        🧪 <strong>Questa è una demo</strong>
+                    </p>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+        
+        // Calculate initial costs
+        document.addEventListener('DOMContentLoaded', function() {
+            calculateCosts();
+        });
+    </script>
+</body>
+</html>
