@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Online - Caffè Ramenzoni Parma Praha</title>
+    <meta name="description" content="Acquista online i migliori caffè di Caffè Ramenzoni. Miscele tradizionali da Parma e Praga.">
+    
+    <!-- Stili per iframe responsive -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #FAFAFA;
+        }
+        
+        .header-simple {
+            background: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .header-simple h1 {
+            margin: 0;
+            color: #8B4513;
+            font-size: 2rem;
+        }
+        
+        .header-simple .tagline {
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        .back-link {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: #8B4513;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            color: #D2691E;
+        }
+        
+        .iframe-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            min-height: calc(100vh - 140px);
+        }
+        
+        .ramenzoni-iframe {
+            width: 100%;
+            height: calc(100vh - 140px);
+            border: none;
+            background: white;
+            display: block;
+        }
+        
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #8B4513;
+            z-index: 10;
+        }
+        
+        .loading-overlay.hidden {
+            display: none;
+        }
+        
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .ramenzoni-iframe {
+                height: calc(100vh - 120px);
+            }
+            
+            .iframe-container {
+                min-height: calc(100vh - 120px);
+            }
+            
+            .header-simple {
+                padding: 0.5rem;
+            }
+            
+            .header-simple h1 {
+                font-size: 1.5rem;
+            }
+            
+            .back-link {
+                font-size: 0.9rem;
+                left: 10px;
+            }
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #8B4513;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            text-align: center;
+        }
+        
+        .coffee-emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Error styles */
+        .error-message {
+            color: #D2691E;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .error-message a {
+            color: #8B4513;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .error-message a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header semplice che matcha il design di ramenzoni.eu -->
+    <div class="header-simple">
+        <a href="../index.php" class="back-link">← Torna al sito</a>
+        <h1>Caffè Ramenzoni</h1>
+        <p class="tagline">Shop Online • I migliori caffè da Parma e Praga</p>
+    </div>
+    
+    <!-- Container iframe -->
+    <div class="iframe-container">
+        <!-- Loading overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="coffee-emoji">☕</div>
+            <div class="spinner"></div>
+            <div class="loading-text">
+                <strong>Caricamento Shop Online...</strong><br>
+                <small>Preparando i migliori caffè per te</small>
+            </div>
+        </div>
+        
+        <!-- Iframe e-shop - INSERISCI QUI IL TUO URL NETLIFY -->
+        <iframe 
+            id="shopIframe"
+            class="ramenzoni-iframe" 
+            src="INSERISCI_QUI_URL_NETLIFY"
+            title="Caffè Ramenzoni E-Shop"
+            frameborder="0"
+            allowfullscreen
+            loading="lazy">
+            <p class="error-message">
+                Il tuo browser non supporta gli iframe. 
+                <a href="https://amazing-ramenzoni-shop.netlify.app/" target="_blank">
+                    Clicca qui per aprire lo shop
+                </a>
+            </p>
+        </iframe>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const iframe = document.getElementById('shopIframe');
+            const loading = document.getElementById('loadingOverlay');
+            
+            // Nascondi loading quando iframe è caricato
+            iframe.onload = function() {
+                setTimeout(function() {
+                    loading.classList.add('hidden');
+                }, 500); // Piccolo delay per transizione smooth
+            };
+            
+            // Gestione errori di caricamento
+            iframe.onerror = function() {
+                loading.innerHTML = `
+                    <div class="error-message">
+                        <div class="coffee-emoji">❌</div>
+                        <strong>Errore caricamento shop</strong><br>
+                        <small>Verifica la connessione internet</small><br><br>
+                        <a href="../index.php">← Torna al sito principale</a>
+                    </div>
+                `;
+            };
+            
+            // Comunicazione cross-frame per funzionalità avanzate
+            window.addEventListener('message', function(event) {
+                // Verifica origine per sicurezza (aggiorna con il tuo dominio)
+                const allowedOrigins = [
+                    'https://netlify.app',
+                    'https://github.io',
+                    'https://vercel.app'
+                ];
+                
+                const isAllowed = allowedOrigins.some(origin => 
+                    event.origin.includes(origin.replace('https://', ''))
+                );
+                
+                if (isAllowed && event.data.type === 'eshop-message') {
+                    switch(event.data.action) {
+                        case 'resize':
+                            iframe.style.height = event.data.height + 'px';
+                            break;
+                        case 'cart-update':
+                            // Qui potresti aggiornare un contatore carrello nel sito principale
+                            console.log('Carrello aggiornato:', event.data.count);
+                            break;
+                    }
+                }
+            });
+            
+            // Timeout per loading molto lento
+            setTimeout(function() {
+                if (!loading.classList.contains('hidden')) {
+                    loading.innerHTML = `
+                        <div class="error-message">
+                            <div class="coffee-emoji">⏰</div>
+                            <strong>Caricamento molto lento</strong><br>
+                            <small>La connessione potrebbe essere lenta</small><br><br>
+                            <a href="../index.php">← Torna al sito principale</a> | 
+                            <a href="#" onclick="location.reload()">🔄 Riprova</a>
+                        </div>
+                    `;
+                }
+            }, 15000); // 15 secondi
+            
+            // Analytics tracking (opzionale)
+            function trackShopView() {
+                // Qui potresti aggiungere Google Analytics o altro
+                console.log('Shop iframe visualizzato');
+            }
+            
+            trackShopView();
+        });
+    </script>
+</body>
+</html>

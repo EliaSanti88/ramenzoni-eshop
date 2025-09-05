@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Online - Caffè Ramenzoni</title>
+    <meta name="description" content="Acquista online i migliori caffè di Caffè Ramenzoni. Miscele tradizionali da Parma e Praga.">
+    
+    <style>
+        body { 
+            margin: 0; 
+            padding: 0; 
+            font-family: Arial, sans-serif; 
+            background: #FAFAFA;
+        }
+        
+        .header { 
+            background: white; 
+            padding: 1rem; 
+            text-align: center; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            position: relative;
+            margin-bottom: 0;
+        }
+        
+        .header h1 { 
+            margin: 0; 
+            color: #8B4513; 
+            font-size: 2rem; 
+        }
+        
+        .header .tagline { 
+            color: #666; 
+            font-style: italic; 
+            margin-top: 5px; 
+            margin-bottom: 0;
+        }
+        
+        .back-link { 
+            position: absolute; 
+            left: 20px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            text-decoration: none; 
+            color: #8B4513; 
+            font-weight: bold; 
+        }
+        
+        .back-link:hover { 
+            color: #D2691E; 
+        }
+        
+        .iframe-container { 
+            width: 100%; 
+            height: calc(100vh - 120px);
+            position: relative;
+        }
+        
+        .shop-iframe { 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+            background: white;
+        }
+        
+        .loading { 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            color: #8B4513; 
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        
+        .loading .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #8B4513;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading .coffee-emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) { 
+            .iframe-container { 
+                height: calc(100vh - 100px); 
+            }
+            
+            .header { 
+                padding: 0.5rem; 
+            }
+            
+            .header h1 { 
+                font-size: 1.5rem; 
+            }
+            
+            .back-link { 
+                font-size: 0.9rem; 
+                left: 10px; 
+            }
+        }
+        
+        .error-message {
+            color: #D2691E;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .error-message a {
+            color: #8B4513;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .error-message a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="../index.php" class="back-link">← Torna al sito</a>
+        <h1>Caffè Ramenzoni</h1>
+        <p class="tagline">Shop Online • I migliori caffè da Parma e Praga</p>
+    </div>
+    
+    <div class="iframe-container">
+        <div class="loading" id="loading">
+            <div class="coffee-emoji">☕</div>
+            <div class="spinner"></div>
+            <div>Caricamento Shop Online...</div>
+            <small>Preparando i migliori caffè per te</small>
+        </div>
+        
+        <iframe 
+            id="shopFrame"
+            class="shop-iframe" 
+            src="https://eliasanti88.github.io/ramenzoni-eshop/"
+            title="Caffè Ramenzoni E-Shop"
+            loading="eager"
+            allow="clipboard-read; clipboard-write"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
+            style="display: none;">
+        </iframe>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const iframe = document.getElementById('shopFrame');
+            const loading = document.getElementById('loading');
+            
+            // Nascondi loading quando iframe è caricato
+            iframe.onload = function() {
+                setTimeout(function() {
+                    loading.style.display = 'none';
+                    iframe.style.display = 'block';
+                }, 500); // Piccolo delay per transizione smooth
+            };
+            
+            // Gestione errori di caricamento
+            iframe.onerror = function() {
+                loading.innerHTML = `
+                    <div class="error-message">
+                        <div class="coffee-emoji">❌</div>
+                        <strong>Errore caricamento shop</strong><br>
+                        <small>Verifica la connessione internet</small><br><br>
+                        <a href="../index.php">← Torna al sito principale</a>
+                    </div>
+                `;
+            };
+            
+            // Timeout per caricamento molto lento
+            setTimeout(function() {
+                if (loading.style.display !== 'none') {
+                    loading.innerHTML = `
+                        <div class="error-message">
+                            <div class="coffee-emoji">🔗</div>
+                            <strong>Caricamento lento? Apri direttamente!</strong><br>
+                            <small>Alcuni browser potrebbero bloccare l'iframe</small><br><br>
+                            <a href="https://eliasanti88.github.io/ramenzoni-eshop/" target="_blank" 
+                               style="background: #8B4513; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin: 10px;">
+                               🚀 Apri Shop Online
+                            </a><br><br>
+                            <a href="../index.php">← Torna al sito principale</a> | 
+                            <a href="#" onclick="location.reload()">🔄 Riprova iframe</a>
+                        </div>
+                    `;
+                }
+            }, 5000); // Ridotto a 5 secondi
+            
+            // Comunicazione cross-frame per funzionalità avanzate
+            window.addEventListener('message', function(event) {
+                // Verifica origine per sicurezza
+                if (event.origin.includes('github.io') && event.data.type === 'eshop-message') {
+                    switch(event.data.action) {
+                        case 'resize':
+                            iframe.style.height = event.data.height + 'px';
+                            break;
+                        case 'cart-update':
+                            // Qui potresti aggiornare un contatore carrello nel sito principale
+                            console.log('Carrello aggiornato:', event.data.count);
+                            break;
+                    }
+                }
+            });
+            
+            // Analytics tracking (opzionale)
+            function trackShopView() {
+                // Qui potresti aggiungere Google Analytics o altro
+                console.log('Shop iframe visualizzato via GitHub Pages');
+            }
+            
+            trackShopView();
+        });
+    </script>
+</body>
+</html>

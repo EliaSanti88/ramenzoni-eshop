@@ -228,6 +228,61 @@ h1, h2, h3, h4 {
     transition: var(--transition);
 }
 
+/* Stili specifici per prodotti dell'olio */
+.product-card[data-category="oil"] {
+    border-left: 4px solid #228B22;
+    background: linear-gradient(135deg, #f8fdf8 0%, #ffffff 100%);
+}
+
+.product-card[data-category="oil"]:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(34, 139, 34, 0.15);
+}
+
+.product-card[data-category="oil"] .product-image {
+    background: linear-gradient(135deg, #228B22, #32CD32);
+    font-size: 2.5rem;
+}
+
+.product-card[data-category="oil"] .add-to-cart-btn {
+    background: linear-gradient(135deg, #228B22, #32CD32);
+    border: none;
+}
+
+.product-card[data-category="oil"] .add-to-cart-btn:hover {
+    background: linear-gradient(135deg, #1e7b1e, #2eb82e);
+    transform: translateY(-2px);
+}
+
+/* Categoria olio nel filtro */
+.category-btn[data-category="oil"] {
+    position: relative;
+}
+
+.category-btn[data-category="oil"]:after {
+    content: "🫒";
+    margin-left: 5px;
+}
+
+.category-btn[data-category="oil"].active {
+    background: linear-gradient(135deg, #228B22, #32CD32);
+    color: white;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
 .product-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover);
@@ -719,4 +774,14 @@ h1, h2, h3, h4 {
 
 .error {
     background: #EF4444 !important;
+}
+
+/* Animazioni specifiche per prodotti olio */
+@keyframes olive-glow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.product-card[data-category="oil"] .product-image:hover {
+    animation: olive-glow 1s ease-in-out;
 }

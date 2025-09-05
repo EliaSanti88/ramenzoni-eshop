@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Prodotti - Caffè Ramenzoni</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .test-section { margin: 20px 0; border: 1px solid #ddd; padding: 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Sistema E-Shop Ramenzoni</h1>
+    <p>Questa pagina testa la funzionalità del nuovo catalogo con caffè e olio.</p>
+    
+    <div class="test-section">
+        <h2>📋 Test Prodotti</h2>
+        <div id="product-tests"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🗂️ Test Categorie</h2>
+        <div id="category-tests"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🌐 Test Traduzioni</h2>
+        <div id="translation-tests"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🛒 Test Funzionalità Carrello</h2>
+        <div id="cart-tests"></div>
+        <button onclick="testAddToCart()">Test Aggiungi al Carrello</button>
+    </div>
+
+    <!-- Include scripts from main site -->
+    <script src="js/translations.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    
+    <script>
+        // Test Results Container
+        function addTestResult(containerId, testName, success, message) {
+            const container = document.getElementById(containerId);
+            const div = document.createElement('div');
+            div.className = `test-result ${success ? 'success' : 'error'}`;
+            div.innerHTML = `<strong>${testName}:</strong> ${message}`;
+            container.appendChild(div);
+        }
+
+        // Test Products
+        function testProducts() {
+            const totalProducts = products.length;
+            addTestResult('product-tests', 'Caricamento Prodotti', 
+                totalProducts > 0, `Caricati ${totalProducts} prodotti`);
+            
+            const coffeeProducts = products.filter(p => ['blends', 'single-origin', 'capsules'].includes(p.category));
+            addTestResult('product-tests', 'Prodotti Caffè', 
+                coffeeProducts.length > 0, `Trovati ${coffeeProducts.length} prodotti caffè`);
+            
+            const oilProducts = products.filter(p => p.category === 'oil');
+            addTestResult('product-tests', 'Prodotti Olio', 
+                oilProducts.length > 0, `Trovati ${oilProducts.length} prodotti olio`);
+            
+            const equipmentProducts = products.filter(p => p.category === 'equipment');
+            addTestResult('product-tests', 'Attrezzature', 
+                equipmentProducts.length > 0, `Trovati ${equipmentProducts.length} prodotti attrezzature`);
+        }
+
+        // Test Categories
+        function testCategories() {
+            const categories = [...new Set(products.map(p => p.category))];
+            addTestResult('category-tests', 'Categorie Uniche', 
+                categories.length >= 5, `Trovate categorie: ${categories.join(', ')}`);
+            
+            const hasOilCategory = categories.includes('oil');
+            addTestResult('category-tests', 'Categoria Olio', 
+                hasOilCategory, hasOilCategory ? 'Categoria olio presente' : 'Categoria olio mancante');
+            
+            // Test filter function
+            const allProducts = filterProducts('all');
+            const oilOnly = filterProducts('oil');
+            addTestResult('category-tests', 'Filtro Funzionalità', 
+                allProducts.length > oilOnly.length, 
+                `Filtro 'tutti': ${allProducts.length}, Filtro 'olio': ${oilOnly.length}`);
+        }
+
+        // Test Translations
+        function testTranslations() {
+            const languages = ['it', 'cz', 'en'];
+            languages.forEach(lang => {
+                setLanguage(lang);
+                const heroTitle = t('hero.title');
+                const productsTitle = t('products.title');
+                const oilCategory = t('categories.oil');
+                
+                addTestResult('translation-tests', `Lingua ${lang.toUpperCase()}`, 
+                    heroTitle && productsTitle && oilCategory, 
+                    `Titoli caricati correttamente`);
+            });
+            
+            // Reset to Italian
+            setLanguage('it');
+        }
+
+        // Test Cart Functions
+        function testAddToCart() {
+            const oilProduct = products.find(p => p.category === 'oil');
+            if (oilProduct) {
+                try {
+                    // Simulate cart initialization if not done
+                    if (typeof cart === 'undefined') {
+                        window.cart = [];
+                    }
+                    
+                    addToCart(oilProduct);
+                    addTestResult('cart-tests', 'Aggiungi Prodotto Olio', 
+                        true, `Prodotto "${getProductName(oilProduct)}" aggiunto al carrello`);
+                } catch (error) {
+                    addTestResult('cart-tests', 'Aggiungi Prodotto Olio', 
+                        false, `Errore: ${error.message}`);
+                }
+            } else {
+                addTestResult('cart-tests', 'Test Carrello', 
+                    false, 'Nessun prodotto olio trovato per il test');
+            }
+        }
+
+        // Run all tests when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🧪 Inizializzazione test...');
+            
+            // Small delay to ensure all scripts are loaded
+            setTimeout(() => {
+                testProducts();
+                testCategories();
+                testTranslations();
+                
+                // Overall summary
+                const allTests = document.querySelectorAll('.test-result');
+                const successTests = document.querySelectorAll('.test-result.success');
+                const errorTests = document.querySelectorAll('.test-result.error');
+                
+                console.log(`✅ Test completati: ${successTests.length}/${allTests.length} successi`);
+                if (errorTests.length > 0) {
+                    console.log(`❌ ${errorTests.length} test falliti`);
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>

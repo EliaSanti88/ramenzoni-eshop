@@ -1,0 +1,49 @@
+{
+  "name": "caffe-ramenzoni-eshop",
+  "version": "1.0.0",
+  "description": "E-shop moderno e responsive per Caffè Ramenzoni Parma Praha",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx live-server --port=8000 --open=/",
+    "dev": "npx live-server --port=8000 --open=/ --watch=css,js",
+    "serve": "python -m http.server 8000",
+    "build": "echo 'Progetto pronto per la produzione'",
+    "test": "echo 'Avvia i test del progetto'",
+    "lint": "echo 'Controllo qualità del codice'"
+  },
+  "keywords": [
+    "ecommerce",
+    "coffee",
+    "cafe",
+    "shop",
+    "ramenzoni",
+    "italian",
+    "responsive",
+    "multilingual"
+  ],
+  "author": {
+    "name": "Caffè Ramenzoni",
+    "email": "info@ramenzoni.eu",
+    "url": "http://www.ramenzoni.eu"
+  },
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "private"
+  },
+  "homepage": "http://www.ramenzoni.eu",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "config": {
+    "port": "8000"
+  }
+}

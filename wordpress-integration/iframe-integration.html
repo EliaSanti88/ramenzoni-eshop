@@ -1,0 +1,95 @@
+<!-- 
+Metodo Iframe per integrare l'e-shop in WordPress
+Usa questo codice in una pagina/post WordPress
+-->
+
+<style>
+.ramenzoni-iframe-container {
+    width: 100%;
+    max-width: 100%;
+    border: none;
+    background: transparent;
+}
+
+.ramenzoni-iframe {
+    width: 100%;
+    height: 800px;
+    border: none;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Responsive iframe */
+@media (max-width: 768px) {
+    .ramenzoni-iframe {
+        height: 600px;
+    }
+}
+
+/* Loading placeholder */
+.iframe-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+</style>
+
+<div class="ramenzoni-iframe-container">
+    <div class="iframe-loading" id="iframeLoading">
+        <p>Caricamento e-shop in corso...</p>
+    </div>
+    
+    <iframe 
+        id="ramenzoniIframe"
+        class="ramenzoni-iframe" 
+        src="https://tuodominio.com/eshop/"
+        title="Caffè Ramenzoni E-Shop"
+        frameborder="0"
+        allowfullscreen
+        style="display: none;">
+    </iframe>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const iframe = document.getElementById('ramenzoniIframe');
+    const loading = document.getElementById('iframeLoading');
+    
+    iframe.onload = function() {
+        loading.style.display = 'none';
+        iframe.style.display = 'block';
+        
+        // Regola altezza iframe automaticamente
+        try {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            const height = iframeDoc.body.scrollHeight;
+            iframe.style.height = height + 'px';
+        } catch(e) {
+            // Cross-origin restrictions
+            console.log('Impossibile regolare altezza iframe automaticamente');
+        }
+    };
+    
+    // Comunicazione tra iframe e parent (se stesso dominio)
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'ramenzoni-cart-update') {
+            // Aggiorna contatore carrello nella pagina parent
+            updateCartCounter(event.data.count);
+        }
+    });
+    
+    function updateCartCounter(count) {
+        // Logica per aggiornare contatore carrello nel tema WordPress
+        const cartCounters = document.querySelectorAll('.cart-count');
+        cartCounters.forEach(counter => {
+            counter.textContent = count;
+            counter.style.display = count > 0 ? 'inline' : 'none';
+        });
+    }
+});
+</script>

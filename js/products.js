@@ -152,6 +152,92 @@ const products = [
         category: 'equipment',
         image: '⚙️',
         inStock: false
+    },
+    // OLIO COLLECTION
+    {
+        id: 10,
+        name: {
+            it: 'Olio Extravergine Viola',
+            cz: 'Extra Panenský Olivový Olej Viola',
+            en: 'Viola Extra Virgin Olive Oil'
+        },
+        description: {
+            it: 'Olio extravergine d\'oliva premium, dal sapore intenso e fruttato',
+            cz: 'Prémiový extra panenský olivový olej s intenzivní ovocnou chutí',
+            en: 'Premium extra virgin olive oil with intense fruity flavor'
+        },
+        price: 18.50,
+        category: 'oil',
+        image: '🫒',
+        inStock: true
+    },
+    {
+        id: 11,
+        name: {
+            it: 'Olio Delicato Bio',
+            cz: 'Jemný Bio Olivový Olej',
+            en: 'Delicate Organic Oil'
+        },
+        description: {
+            it: 'Olio biologico dal gusto delicato, perfetto per insalate e crudo',
+            cz: 'Biologický olej s jemnou chutí, ideální na saláty a za studena',
+            en: 'Organic oil with delicate taste, perfect for salads and raw use'
+        },
+        price: 22.00,
+        category: 'oil',
+        image: '🌿',
+        inStock: true
+    },
+    {
+        id: 12,
+        name: {
+            it: 'Olio Piccante alle Erbe',
+            cz: 'Pikantní Bylinkový Olej',
+            en: 'Spicy Herb Oil'
+        },
+        description: {
+            it: 'Olio aromatizzato con peperoncino e erbe mediterranee',
+            cz: 'Aromatizovaný olej s chilli papričkami a středomořskými bylinkami',
+            en: 'Flavored oil with chili pepper and Mediterranean herbs'
+        },
+        price: 24.50,
+        category: 'oil',
+        image: '🌶️',
+        inStock: true
+    },
+    {
+        id: 13,
+        name: {
+            it: 'Olio al Tartufo',
+            cz: 'Lanýžový Olej',
+            en: 'Truffle Oil'
+        },
+        description: {
+            it: 'Olio pregiato aromatizzato al tartufo nero, per piatti gourmet',
+            cz: 'Vzácný olej ochucený černými lanýži pro gurmánské pokrmy',
+            en: 'Precious oil flavored with black truffle for gourmet dishes'
+        },
+        price: 35.00,
+        category: 'oil',
+        image: '🍄',
+        inStock: true
+    },
+    {
+        id: 14,
+        name: {
+            it: 'Set Degustazione Oli (3x250ml)',
+            cz: 'Degustační Set Olejů (3x250ml)',
+            en: 'Oil Tasting Set (3x250ml)'
+        },
+        description: {
+            it: 'Set di tre oli per scoprire i diversi sapori della tradizione italiana',
+            cz: 'Sada tří olejů pro objevení různých chutí italské tradice',
+            en: 'Set of three oils to discover different flavors of Italian tradition'
+        },
+        price: 52.00,
+        category: 'oil',
+        image: '🎁',
+        inStock: true
     }
 ];
 

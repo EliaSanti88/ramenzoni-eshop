@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo Olio Viola - Caffè Ramenzoni</title>
+    <meta name="description" content="Scopri la nostra selezione di oli extravergini d'oliva premium. Qualità italiana direttamente dal produttore.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .catalog-hero {
+            background: linear-gradient(135deg, #228B22, #32CD32);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .catalog-image-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .catalog-image {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .catalog-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .oil-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            border-left: 4px solid #228B22;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .back-to-shop {
+            display: inline-block;
+            background: linear-gradient(135deg, #228B22, #32CD32);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 2rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-shop:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(34, 139, 34, 0.3);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header semplificato -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Caffè Ramenzoni</h1>
+                    <span class="tagline">Catalogo Olio Viola</span>
+                </div>
+                <div class="header-actions">
+                    <a href="index.html" class="back-to-shop">🛒 Torna al Shop</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="catalog-hero">
+        <div class="container">
+            <h2>🫒 Olio Viola - Catalogo Premium</h2>
+            <p>Scopri la nostra selezione esclusiva di oli extravergini d'oliva</p>
+        </div>
+    </section>
+
+    <!-- Catalogo Image -->
+    <section class="container">
+        <div class="catalog-image-container">
+            <h3 style="text-align: center; margin-bottom: 2rem; color: #228B22;">Il Nostro Catalogo Completo</h3>
+            <img src="Olio Viola.jpeg" alt="Catalogo Olio Viola - Selezione Premium" class="catalog-image">
+            <p style="margin-top: 1rem; color: #666; font-style: italic;">
+                Clicca sull'immagine per vederla a dimensione originale
+            </p>
+        </div>
+
+        <!-- Features Section -->
+        <div class="oil-features">
+            <div class="feature-card">
+                <div class="feature-icon">🌿</div>
+                <h4>100% Biologico</h4>
+                <p>Tutti i nostri oli sono certificati biologici, prodotti senza pesticidi o sostanze chimiche artificiali.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🇮🇹</div>
+                <h4>Origine Italiana</h4>
+                <p>Direttamente dalle migliori olivete italiane, con tracciabilità completa dalla pianta alla bottiglia.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h4>Qualità Premium</h4>
+                <p>Spremitura a freddo entro 24 ore dalla raccolta per preservare tutti i nutrienti e l'aroma autentico.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h4>Spedizione Sicura</h4>
+                <p>Imballaggio protettivo e spedizione veloce per garantire che l'olio arrivi perfetto a casa tua.</p>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div style="text-align: center; margin: 3rem 0;">
+            <h3 style="color: #228B22; margin-bottom: 1rem;">Pronto a Ordinare?</h3>
+            <p style="margin-bottom: 2rem; color: #666;">
+                Visita il nostro shop online per acquistare questi oli premium e molto altro ancora!
+            </p>
+            <a href="index.html#products" class="back-to-shop">
+                🛒 Vai al Shop Online
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Caffè Ramenzoni</h4>
+                    <p>Dal 1950, la passione per il caffè e l'olio d'oliva di qualità che unisce Italia e Repubblica Ceca.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contatti</h4>
+                    <p>📍 Parma, Italia</p>
+                    <p>📍 Praha, Repubblica Ceca</p>
+                    <p>📧 info@ramenzoni.eu</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Seguici</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/ramenzonipraha" target="_blank">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Caffè Ramenzoni. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Semplice script per aprire l'immagine in una nuova finestra
+        document.querySelector('.catalog-image').addEventListener('click', function() {
+            window.open('Olio Viola.jpeg', '_blank');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Online - Caffè Ramenzoni</title>
+    <meta name="description" content="Acquista online i migliori caffè di Caffè Ramenzoni. Miscele tradizionali da Parma e Praga.">
+    <meta http-equiv="refresh" content="0; url=https://eliasanti88.github.io/ramenzoni-eshop/">
+    
+    <style>
+        body { 
+            margin: 0; 
+            padding: 0; 
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(135deg, #8B4513, #D2691E);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        
+        .redirect-container {
+            background: rgba(255,255,255,0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .coffee-logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .redirect-message {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .direct-link {
+            display: inline-block;
+            background: white;
+            color: #8B4513;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .direct-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .back-link {
+            display: block;
+            margin-top: 2rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="redirect-container">
+        <div class="coffee-logo">☕</div>
+        <h1>Caffè Ramenzoni</h1>
+        <p class="tagline">Shop Online • Parma • Praha</p>
+        
+        <div class="redirect-message">
+            Reindirizzamento al nostro shop online...
+        </div>
+        
+        <div class="spinner"></div>
+        
+        <p>Se non vieni reindirizzato automaticamente:</p>
+        
+        <a href="https://eliasanti88.github.io/ramenzoni-eshop/" class="direct-link">
+            🚀 Entra nel Shop
+        </a>
+        
+        <a href="../index.php" class="back-link">← Torna al sito principale</a>
+    </div>
+
+    <script>
+        // Fallback per il redirect
+        setTimeout(function() {
+            window.location.href = 'https://eliasanti88.github.io/ramenzoni-eshop/';
+        }, 2000); // 2 secondi di delay
+        
+        // Analytics tracking
+        console.log('Redirect to Ramenzoni E-Shop');
+    </script>
+</body>
+</html>
